@@ -1,24 +1,86 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(number1, number2) {
+  let maior;
+  if (number1>number2){
+    maior = number1;
+  }else{
+    maior = number2;
+  }
+  return maior;
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(wordList) {
+  let maisLonga = wordList[0];
+  if (!wordList.length){
+    return null;
+  }
+  for(i in wordList){
+    if (maisLonga.length < wordList[i].length){
+      maisLonga = wordList[i];
+    }
+  }
+  return maisLonga;
+}
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(numberList) {
+  let soma=0;
+  if(!numberList.length){
+    return 0;
+  }else{
+    for(i in numberList){
+      soma += numberList[i];
+    }
+    return soma;
+  }
+}
 
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+const test = [6, 12, 'miami', 1, 'barca', '200', 'lisboa', 8, [], {}];
+// should return: 57
+function sum(listaQualquer) {
+  let soma=0;
+  let tamanhoString;
+  if(!listaQualquer.length){
+    return 0;
+  }else{
+    for(i in listaQualquer){
+      if (typeof(listaQualquer[i]) === 'string'){
+        tamanhoString = listaQualquer[i].length;
+        listaQualquer.splice(i,1,tamanhoString);
+      }else if (typeof(listaQualquer[i]) === 'boolean'){
+        if (listaQualquer[i] === true){
+          listaQualquer[i] = 1;
+        }else{
+          listaQualquer[i] = 0;
+        }
+      }
+      try{
+        if (typeof(listaQualquer[i]) === 'object'|| listaQualquer[i] === 'array'){
+          throw new Error (`Unsupported data type sir or ma'am`);
+        }
+      }
+      catch(erro){
+        
+      }
+      soma += listaQualquer[i];
+    }
+    return soma;
+  }
+}
+sum(test);
+
 
 
 
@@ -26,40 +88,117 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
-
+function averageNumbers(numberList) {
+  let soma=0;
+  if(!numberList.length){
+    return null;
+  }else{
+    for(i in numberList){
+      soma += numberList[i];
+    }
+  return soma/numberList.length
+  }
+}
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(wordList) {
+  let tamanhoString;
+  let soma=0;
+  if(!wordList.length){
+    return null;
+  }else{
+    for(i in wordList){
+      tamanhoString = wordList[i].length;
+      soma+=tamanhoString;
+    }
+  }
+  return soma / wordList.length;
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(listaQualquer) {
+  let soma=0;
+  let tamanhoString;
+  if(!listaQualquer.length){
+    return null;
+  }else{
+    for(i in listaQualquer){
+      if (typeof(listaQualquer[i]) === 'string'){
+        tamanhoString = listaQualquer[i].length;
+        listaQualquer.splice(i,1,tamanhoString);
+      }else if (typeof(listaQualquer[i]) === 'boolean'){
+        if (listaQualquer[i] === true){
+          listaQualquer[i] = 1;
+        }else{
+          listaQualquer[i] = 0;
+        }
+      }
+      soma += listaQualquer[i];
+    }
+    return soma / listaQualquer.length;
+  }
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
-  'crab',
-  'poison',
-  'contagious',
-  'simple',
-  'bring',
-  'sharp',
-  'playground',
-  'poison',
-  'communion',
-  'simple',
-  'bring'
-];
+  'iPhone',
+  'Samsung',
+  'Android',
+  'iOS',
+  'iPhone',
+  'Samsung',
+  'Nokia',
+  'Blackberry',
+  'Android'];
 
-function uniquifyArray() {}
+function uniquifyArray(array) {
+  const arrayUnique = [];
+  const arrayUniqueArranj = [];
+  let valorAtual;
+  if(!array.length){
+    return null;
+  }else{
+    for(let i = 0; i < array.length; i++){
+      valorAtual = array[i];
+      if(array.includes(valorAtual, i+1)===false){
+        arrayUnique.push(array[i]);
+      }
+    }
+  }
+  for(let i = 0; i < arrayUnique.length; i++){
+    arrayUniqueArranj.push("");
+  }
+  for(let i = 0; i < arrayUnique.length; i++){
+    arrayUniqueArranj.splice(array.indexOf(arrayUnique[i]), 1, arrayUnique[i]);
+  }
+  for(let i = 0; i < arrayUniqueArranj.length; i++){
+    if(arrayUniqueArranj[i]===''){
+      arrayUniqueArranj.splice(i,1);
+      i--;
+    }
+  }
 
+  return arrayUniqueArranj;
+}
+console.log (uniquifyArray(wordsUnique));
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(array, word) {
+  if (!array.length){
+    return null;
+  }
+  if(array.includes(word)){
+    return true;
+  }else{
+    return false;
+  }
+
+}
 
 
 
@@ -78,7 +217,37 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(array, word) {
+  let tamanhoOriginal = array.length;
+  if (!array.length){
+    return 0;
+  }
+  if(array.includes(word)){
+    for(let i = 0; i < array.length; i++){
+      if(array[i]===word){
+         array.splice(array[i],1);
+         i--;
+      }
+     }
+    return tamanhoOriginal - array.length;
+    }else{
+      return 0;
+    }
+}
+console.log(howManyTimes([
+  'basketball',
+  'football',
+  'tennis',
+  'rugby',
+  'rugby',
+  'ping pong',
+  'rugby',
+  'basketball',
+  'rugby',
+  'handball',
+  'rugby'
+],
+'rugby'))
 
 
 
